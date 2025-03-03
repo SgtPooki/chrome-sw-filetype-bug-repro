@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Service Worker Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        line-height: 1.6;
+      }
+      #getLink {
+        display: none;
+        margin-top: 20px;
+      }
+      #getLink.show {
+        display: block;
+      }
+      #getLink a {
+        display: inline-block;
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+      }
+      #getLink a:hover {
+        background-color: #45a049;
+      }
+      .status {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 4px;
+      }
+      .success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+      .error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Simple /get Fetch Demo</h1>
+    <p>This demo shows a bug in Chrome where filenames aren't properly populated when saving content served by a Service Worker.</p>
+    
+    <div id="swStatus"></div>
+    
+    <div id="getLink">
+      <p>The Service Worker is now registered! Click the button below to trigger the fetch:</p>
+      <a href="/get" target="_blank">Load Image from Service Worker</a>
+      <p><strong>Instructions:</strong> After the image loads, right-click on it and select "Save image as..." to observe the bug.</p>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
