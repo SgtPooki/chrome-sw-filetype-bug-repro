@@ -1,6 +1,6 @@
 /* service-worker.ts
-   A minimal Service Worker that intercepts requests to "/get".
-   it fetches it and returns it with all original headers intact.
+   A minimal Service Worker that intercepts requests with query parameter "?get=true".
+   it fetches an image and returns it with all original headers intact.
 */
 
 const IMAGE_URLS = [
@@ -10,7 +10,7 @@ const IMAGE_URLS = [
 ]
 
 // ---------------------------------------
-// Handle the "/get" request
+// Handle the "?get=true" request
 // ---------------------------------------
 async function handleGetRequest() {
 
@@ -80,8 +80,8 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Intercept requests to "/get" or "get" (both absolute and relative paths)
-  if (url.pathname === '/get' || url.pathname === '/chrome-sw-filetype-bug-repro/get' || url.pathname.endsWith('/get')) {
+  // Intercept requests with the query parameter ?get=true
+  if (url.searchParams.get('get') === 'true') {
     event.respondWith(handleGetRequest());
   }
 

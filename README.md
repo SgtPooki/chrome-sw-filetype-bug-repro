@@ -12,6 +12,13 @@ When a Service Worker serves an image with the correct Content-Type headers, Chr
 
 ## 🚀 How to test it yourself
 
+### Online Demo
+You can test this directly in your browser by visiting:
+```
+https://sgtpooki.github.io/chrome-sw-filetype-bug-repro/
+```
+
+### Local Testing
 1. Clone this repository
    ```
    git clone https://github.com/SgtPooki/chrome-sw-filetype-bug-repro
@@ -36,11 +43,11 @@ When a Service Worker serves an image with the correct Content-Type headers, Chr
 
 ## ✅ Expected Behavior
 
-When saving the image, Chrome should suggest a filename with a .jpg extension since the content type is set to "image/jpeg". This currently works in firefox.
+When saving the image, Chrome should suggest a filename with a .jpg extension since the content type is set to "image/jpeg". This currently works in Firefox.
 
 ## ❌ Actual Behavior
 
-Chrome suggests a generic filename (like "download" or "get") without the proper extension.
+Chrome suggests a generic filename (like "download" or simply no name at all) without the proper extension.
 
 ## 🔍 Why is this a problem?
 
@@ -48,4 +55,4 @@ This makes for a confusing user experience, as people expect files to have the c
 
 ## 💻 Technical Details
 
-The Service Worker in this demo fetches an image, and serves it with the same content-type headers of working backend gateways. Despite this, Chrome doesn't use the headers to suggest an appropriate filename extension.
+The Service Worker in this demo intercepts requests with the query parameter `?get=true`, fetches an image, and serves it with the correct content-type headers. Despite this, Chrome doesn't use the headers to suggest an appropriate filename extension.
