@@ -80,8 +80,8 @@ self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Intercept ONLY requests to "/get"
-  if (url.pathname === '/get') {
+  // Intercept requests to "/get" or "get" (both absolute and relative paths)
+  if (url.pathname === '/get' || url.pathname === '/chrome-sw-filetype-bug-repro/get' || url.pathname.endsWith('/get')) {
     event.respondWith(handleGetRequest());
   }
 
